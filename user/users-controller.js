@@ -1,5 +1,8 @@
 var usersController = function() {
   return {
+    get: function(id) {
+      return {}
+    }
   }
 }
 
