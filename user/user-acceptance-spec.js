@@ -1,4 +1,4 @@
-var usersController = require('./users-controller')()
+var usersController = require('./users-controller')
 
 describe('users api controller', function() {
   var cassandra = require('cassandra-driver')
