@@ -1,5 +1,7 @@
+var usersRepository = require('./users-repository')
+
 module.exports = {
   get: function(id) {
-    return {}
+    return usersRepository.get(id)
   }
 }
