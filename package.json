@@ -12,6 +12,7 @@
     "cassandra-driver": "^2.2.1",
     "jasmine": "^2.3.2",
     "mock-require": "^1.1.0",
+    "q": "^1.4.1",
     "sinon": "^1.17.1"
   }
 }
