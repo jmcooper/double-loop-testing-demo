@@ -2,6 +2,7 @@ var usersController = require('./users-controller')
 var usersRepository = require('./users-repository')
 var mockRequire = require('mock-require')
 var sinon = require('sinon')
+var q = require('q')
 var mockUsersRepository
 
 describe('users api controller', function() {
@@ -13,11 +14,18 @@ describe('users api controller', function() {
     var result
     var userFromRepository = {id: 'abc'}
 
-    beforeEach(function() {
+    beforeEach(function(done) {
+      var deferred = q.defer()
       mockUsersRepository = sinon.stub(usersRepository)
-      mockUsersRepository.get.returns(userFromRepository)
+      mockUsersRepository.get.returns(deferred.promise)
       mockRequire('./users-repository', mockUsersRepository)
-      result = usersController.get('123-abc')
+
+      usersController.get('123-abc').then(function(response) {
+        result = response
+        done()
+      })
+
+      deferred.resolve(userFromRepository)
     })
     afterEach(function() {
       sinon.restore(usersRepository)
